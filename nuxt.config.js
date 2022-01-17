@@ -1,12 +1,13 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+//  ssr: false,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'calcul-aah',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'fr',
     },
     meta: [
       { charset: 'utf-8' },
@@ -22,8 +23,10 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-  	'~/plugins/vue-lodash',
-    '~/plugins/vue-morris'
+  	{src: '~/plugins/jsdom.server.js'},
+  	{src: '~/plugins/vue-lodash.js'},
+  	{src: '~/plugins/chartjs.client.js'},
+  	{src: '~/plugins/compositionapi.js'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -45,8 +48,14 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/',
+    proxyHeaders: false,
+    credentials: false,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  publicRuntimeConfig: {
+    apiURL: 'https://api.fr.openfisca.org/latest/',
+  }
 }

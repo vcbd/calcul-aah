@@ -15,7 +15,7 @@
   import { LineChart } from 'vue-chart-3'
 
   const xAxis = (() => {
-    const ret = [1, 710]
+    const ret = [1]
     for (let i = 0; i <= 3000; i += 100) {
       ret.push(i)
     }
@@ -156,6 +156,15 @@
       const lym = (new Date().getFullYear() - 1) + '-' + (new Date().getMonth() + 1)
 //      const py = 'year:' + lym + ':2'
       const pm = 'month:' + lym + ':13'
+      let pt1 = new Date()
+      pt1.setMonth(-3)
+      pt1 = pt1.getFullYear() + '-' + (pt1.getMonth() + 1)
+      let pt2 = new Date()
+      pt2.setMonth(-2)
+      pt2 = pt2.getFullYear() + '-' + (pt2.getMonth() + 1)
+      let pt3 = new Date()
+      pt3.setMonth(-1)
+      pt3 = pt3.getFullYear() + '-' + (pt3.getMonth() + 1)
       const ty = new Date().getFullYear()
       const ly = new Date().getFullYear() - 1
       const requests = []
@@ -163,14 +172,23 @@
         const params = {}
         params['individus.demandeureuse.salaire_de_base["' + pm + '"]'] = xSlice * 13
         params['individus.demandeureuse.salaire_net["' + now + '"]'] = null
-        params['individus.demandeureuse.taux_incapacite["' + now + '"]'] = 60
+        params['individus.demandeureuse.taux_incapacite["' + pm + '"]'] = 60
         params['menages.menage_1.loyer["' + pm + '"]'] = 500 * 13
         params['menages.menage_1.statut_occupation_logement["' + ty + '"]'] = 'locataire_vide'
         params['menages.menage_1.impots_directs["' + ly + '"]'] = null
         params['individus.demandeureuse.aah["' + now + '"]'] = null
+        params['individus.demandeureuse.aah["' + pt1 + '"]'] = null
+        params['individus.demandeureuse.aah["' + pt2 + '"]'] = null
+        params['individus.demandeureuse.aah["' + pt3 + '"]'] = null
         params['individus.demandeureuse.mva["' + now + '"]'] = null
         params['familles.famille_1.aide_logement["' + now + '"]'] = null
+        params['familles.famille_1.aide_logement["' + pt1 + '"]'] = null
+        params['familles.famille_1.aide_logement["' + pt2 + '"]'] = null
+        params['familles.famille_1.aide_logement["' + pt3 + '"]'] = null
         params['familles.famille_1.ppa["' + now + '"]'] = null
+        params['familles.famille_1.ppa["' + pt1 + '"]'] = null
+        params['familles.famille_1.ppa["' + pt2 + '"]'] = null
+        params['familles.famille_1.ppa["' + pt3 + '"]'] = null
         
         requests.push(apiReq.bind(this)(params))
       }

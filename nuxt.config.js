@@ -27,6 +27,7 @@ export default {
   	{src: '~/plugins/vue-lodash.js'},
   	{src: '~/plugins/chartjs.client.js'},
   	{src: '~/plugins/compositionapi.js'},
+  	{src: '~/plugins/ofdate.js'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

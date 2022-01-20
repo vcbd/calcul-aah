@@ -93,6 +93,9 @@
         this.datasets.push({
           'label': vz.label,
           'data': [],
+          'borderColor': vz.border,
+          'backgroundColor': vz.background,
+          'fill': vz.fill,
         })
       if (this.prm === null) {
         fullURL += 'parameter/' + this.viz[0].id
